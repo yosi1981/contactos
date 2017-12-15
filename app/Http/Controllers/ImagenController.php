@@ -30,6 +30,25 @@ class ImagenController extends Controller
         return view(Auth::user()->stringRol->nombre . '/imagen.index', compact('imagenes'));
     }
 
+    public function getImages()
+    {
+
+        switch (Auth::user()->stringRol->nombre) {
+            case 'admin':
+                $imagenes = Imagen::all();
+                //->short('titulo', 'asc')
+                //->paginate(500);
+                break;
+
+            case 'anunciante':
+                $imagenes = Imagen::where('idusuario', Auth::user()->id)
+                    ->orderBy('titulo', 'asc')
+                    ->paginate(500);
+                break;
+        }
+
+        return view(Auth::user()->stringRol->nombre . '/imagen.includes.tablaImagenes', compact('imagenes'));
+    }
     public function almacenar(request $request)
     {
         $files = Input::file('filesUpload');

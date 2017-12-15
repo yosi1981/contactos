@@ -1,105 +1,75 @@
-@extends ('layouts.admin1')
+@extends ('layouts.admin2')
 @section ('contenido')
-
-
-	
-<div class="table-responsive" id="cuerpo" name="cuerpo">
 
     @include('admin.imagen.includes.nuevaImagen')
     @include('admin.imagen.includes.modal-delete')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-default">
- 
-                    <div class="panel-body">
-                    	<div class="row">
-                    		<button data-toggle="tooltip" data-placement="right" title="Subir Imagen" id="btnUploadImagen" name="btnUploadImagen" class="btn btn-success">Subir imagen</button>
-                    	</div>
-                        <div class="row">
-                            @foreach($imagenes as $imagen)
-                            <div class="col-sm-6 col-md-4">
-                                <div class="thumbnail">
-                                    <img src="/imagenes/thumb_{{$imagen->ficheroimagen}}" alt="{{$imagen->idusuario}}">
-                                    <div class="caption">
-                                        <h3>{{$imagen->titulo}} {{count($imagen->AnunciosImagen)}}</h3>
-                                        <button data-toggle="tooltip" data-placement="top" title="Eliminar Elemento" type="button" class="delete-modal btn btn-danger" data-id="{{$imagen->idimagen}}" data-titulo="{{$imagen->titulo}}"><span class="glyphicon glyphicon-remove" aria-hidden="true" ></span></button>
-
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+        </div>
+        <div class="page-content">
+            <div class="page-header">
+                <h1>
+                    Gallery
+                    <small>
+                        <i class="ace-icon fa fa-angle-double-right">
+                        </i>
+                        responsive photo gallery using colorbox
+                    </small>
+                    <button class="btn btn-success" data-placement="right" data-toggle="tooltip" id="btnUploadImagen" name="btnUploadImagen" title="Subir Imagen">
+                        Subir imagen
+                    </button>
+                </h1>
+            </div>
+            <!-- /.page-header -->
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+                <div id="tablaImagenes">
                 </div>
             </div>
+            <!-- /.col -->
         </div>
+        <!-- /.row -->
     </div>
-<!--
-   <div style="max-width:900px;margin:0 auto;padding:100px 0;">
-
-        <div style="float:left;padding-top:98px;">
-            <div id="thumbnail-slider">
-                <div class="inner">
-                    <ul>
-                        @foreach($imagenes as $imagen)
-                        <li>
-                            <img class="thumb" src="/imagenes/thumb_{{$imagen->ficheroimagen}}" style="height:auto;" />
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>    
--->
-   <div style="max-width:900px;margin:0 auto;padding:100px 0;">
-
-        <div style="float:left;padding-top:98px;">
-            <div id="thumbnail-slider">
-                <div class="inner">
-                    <ul>
-                        @foreach($imagenes as $imagen)
-                        <li>
-                        <img class="thumb" src="/imagenes/{{$imagen->ficheroimagen}}" style="height:auto;" />
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <!-- /.page-content -->
 </div>
-
-
-
 <script type="text/javascript">
-            $(document).ready(function(){
+    $(document).ready(function(){
                 $('[data-toggle="tooltip"]').tooltip();   
+                getImagenes();
             });
-			$('#btnUploadImagen').on('click',function(){
-				$('#Imagen').modal('show');
-			})
+            $('#btnUploadImagen').on('click',function(){
+                $('#Imagen').modal('show');
+            })
     
-    		var form=document.getElementById('frmUploadImage');
-    		var request=new XMLHttpRequest();
+            var form=document.getElementById('frmUploadImage');
+            var request=new XMLHttpRequest();
 
-    		form.addEventListener('submit',function(e){
-    			e.preventDefault();
-    			var formData=new FormData(form);
+            form.addEventListener('submit',function(e){
+                e.preventDefault();
+                var formData=new FormData(form);
 
-    			alert(formData);
-    			request.open('post','uploadimage');
-    			request.addEventListener("load",transferComplete);
-    			request.send(formData);
+                request.open('post','uploadimage');
+                request.addEventListener("load",transferComplete);
+                request.send(formData);
 
 
-    		})
-
-    		function transferComplete(data){
-    			$('#Imagen').modal('hide');
-    		}
+            })
+    function getImagenes()
+    {
+        var url="{{URL::to('/admin/getImages')}}";
+        $.ajax({
+            type : 'get',
+            url  : url,
+            //data : {'searchText': search}
+        }).done(function(data){
+            $('#tablaImagenes').html(data);
+        })
+    }
+            function transferComplete(data){
+                $('#Imagen').modal('hide');
+                getImagenes();
+            }
             $(document).ready(function() {
                 $('.modal').appendTo("body");
             });
@@ -122,6 +92,7 @@
                            },
                     success: function(data) {
                     $('#modal-delete').modal('hide');
+                    getImagenes();
                     }
                   });
                 });

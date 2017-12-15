@@ -1,13 +1,22 @@
-@extends ('layouts.admin')
+@extends ('layouts.admin2')
 @section ('contenido')
-
-<div class="row">
-	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-			@include('includes.admin.tables.infoAnunciosProvinciaAdministra')
-			@include('includes.admin.tables.infoReferidosTable')
-	</div>
-
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+        </div>
+        <div class="page-content">
+            <div class="page-header">
+                @include('includes.admin.tables.infoReferidosTable')
+                @include('includes.admin.tables.infoAnunciosProvinciaAdministra')
+            </div>
+        </div>
+    </div>
 </div>
-
+<script>
+    $('.show-details-btn').on('click', function(e) {
+                    e.preventDefault();
+                    $(this).closest('tr').next().toggleClass('open');
+                    $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
+                });
+</script>
 @endsection
-

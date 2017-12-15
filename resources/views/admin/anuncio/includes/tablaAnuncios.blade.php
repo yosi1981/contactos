@@ -78,7 +78,7 @@
                     </span>
                     @else
                     <span class="label label-sm label-success">
-                        Inactivo
+                        Activo
                     </span>
                     @endif
                 </td>

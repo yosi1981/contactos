@@ -41,8 +41,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/CitasAnuncio/{id}', 'CitaController@CitasAnuncio');
     Route::get('/nuevaCita/{id}', 'CitaController@NuevaCita');
     Route::get('/editCita/{id}', 'CitaController@EditarCita');
-    Route::post('/guardarNuevaCita','CitaController@GuardarNuevaCita')->name('cita.guardar');
-    Route::post('/updateCita','CitaController@UpdateCita')->name('cita.guardar');    
+    Route::post('/guardarNuevaCita', 'CitaController@GuardarNuevaCita')->name('cita.guardar');
+    Route::post('/updateCita', 'CitaController@UpdateCita')->name('cita.guardar');
 
     Route::resource('/Usuario', 'UsuarioController');
     Route::get('/crearUsuario', 'UsuarioController@CrearUsuario');
@@ -53,8 +53,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/searchUsuario', 'UsuarioController@search');
 
     Route::get('/home', 'HomeController@index');
-    Route::get('/infocuenta', 'infocuentaController@InfoReferidos');
+
     Route::group(['middleware' => 'Admin'], function () {
+        Route::get('/admin/infocuenta', 'infocuentaController@InfoReferidos');
         Route::get('/admin/dashboard', 'AdminController@Dashboard');
         Route::resource('/admin/Provincia', 'ProvinciaController');
         Route::post('/admin/nuevaProvincia', 'ProvinciaController@nuevaProvincia');
@@ -71,6 +72,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/admin/Imagen', 'ImagenController');
         Route::post('/admin/uploadimage', 'ImagenController@Almacenar');
         Route::post('/admin/eliminarimagen', 'ImagenController@eliminar');
+        route::get('/admin/getImages', 'ImagenController@getImages');
         Route::get('/IniciarUsuario/{id}', 'UsuarioController@IniciarSesion');
     });
 
@@ -81,14 +83,17 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['middleware' => 'AdminProvincia'], function () {
         Route::get('/adminProvincia/dashboard', 'AdminProvinciaController@Dashboard');
+        Route::get('/adminProvincia/infocuenta', 'infocuentaController@InfoReferidos');
     });
 
     Route::group(['middleware' => 'Colaborador'], function () {
         Route::get('/colaborador/dashboard', 'ColaboradorController@Dashboard');
+        Route::get('/delegado/infocuenta', 'infocuentaController@InfoReferidos');
     });
 
     Route::group(['middleware' => 'Anunciante'], function () {
         Route::resource('/anunciante/Imagen', 'ImagenController');
+        route::get('/anunciante/getImages', 'ImagenController@getImages');
         Route::post('/anunciante/uploadimage', 'ImagenController@Almacenar');
         Route::post('/anunciante/eliminarimagen', 'ImagenController@eliminar');
 

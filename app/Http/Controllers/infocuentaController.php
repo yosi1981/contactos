@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Provincia;
 use Auth;
 
 class infocuentaController extends Controller
@@ -11,6 +12,12 @@ class infocuentaController extends Controller
     {
         $usuarioActual = Auth::user();
         \Session::put('seccion_actual', 'InfoCuenta');
-        return view($usuarioActual->stringRol->nombre . '.InfoCuenta.infocuenta', ["usuario" => $usuarioActual]);
+        if ($usuarioActual->stringRol->nombre == 'admin') {
+            $provincias = Provincia::all();
+            return view($usuarioActual->stringRol->nombre . '.InfoCuenta.infocuenta', ["usuario" => $usuarioActual, "provincias" => $provincias]);
+        } else {
+            return view($usuarioActual->stringRol->nombre . '.InfoCuenta.infocuenta', ["usuario" => $usuarioActual]);
+
+        }
     }
 }
