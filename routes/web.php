@@ -73,6 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/admin/uploadimage', 'ImagenController@Almacenar');
         Route::post('/admin/eliminarimagen', 'ImagenController@eliminar');
         route::get('/admin/getImages', 'ImagenController@getImages');
+        route::get('/admin/getImagesUser', 'ImagenController@getImagesUser');
         Route::get('/IniciarUsuario/{id}', 'UsuarioController@IniciarSesion');
     });
 

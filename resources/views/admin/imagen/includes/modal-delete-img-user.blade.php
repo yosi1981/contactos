@@ -1,4 +1,4 @@
-<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog"  id="modal-delete">
+<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog"  id="modal-delete-img-user">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -10,14 +10,13 @@
 				<div class="modal-body">
 					<form class="form-horizontal" role="form">
 						<p id="titledelete" >Confirme si desea Eliminar la Imagen :</p>
-						<span class="hidden id"></span>
-						<span class="hidden iduser"></span>
-
+						<span class="id"></span>
+						<span class="iduser"></span>
 					</form>
 				</div>
-				<div class="modal-footer">
+				<div class="modal-footer1">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-					<button type="submit" class="delete btn btn-primary">Confirmar</button>
+					<button type="submit" class="delete1 btn btn-primary">Confirmar</button>
 				</div>
 			</div>
 		</div>

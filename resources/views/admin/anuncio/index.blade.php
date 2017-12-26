@@ -22,9 +22,10 @@
                         </span>
                     </div>
                     @endif
-                    <div class="widget-box widget-color-blue ui-sortable-handle" id="widget-box-2">
-                        <div class="widget-header">
-                            <h5 class="widget-title bigger lighter">
+<div class="widget-box widget-color-blue ui-sortable-handle" id="widget-box-3">
+    <div class="widget-header widget-header-small">
+        <h6 class="widget-title">
+
                                 <i class="ace-icon fa fa-table">
                                 </i>
                                 Anuncios
@@ -50,47 +51,46 @@
                             </div>
                             <!-- /.nav-search -->
                         </div>
-                        <div class="widget-body" id="cuerpo">
-                            <div align="center" class="widget-main no-padding">
+                        <div class="widget-body" style="display: block;">
+
+                            <div class="widget-main ">
                                 <div>
                                 </div>
+                                <div class="table-responsive" id="cuerpo" name="cuerpo">
                                 <table class="table table-bordered table-hover" id="simple-table">
                                     <thead>
                                         <tr>
-                                            <th>
-                                                Id Anuncio
+                                            <th width="5%">
+                                                Id
                                             </th>
-                                            <th>
+                                            <th width="10%">
                                                 Titulo
                                             </th>
-                                            <th>
-                                                descripcion
-                                            </th>
-                                            <th>
+                                            <th width="10%">
                                                 <i class="ace-icon fa fa-clock-o bigger-110 hidden-480">
                                                 </i>
                                                 Fecha Inicio
                                             </th>
-                                            <th>
+                                            <th width="10%">
                                                 <i class="ace-icon fa fa-clock-o bigger-110 hidden-480">
                                                 </i>
                                                 Fecha Final
                                             </th>
-                                            <th>
+                                            <th width="10%">
                                                 <i class="ace-icon fa fa-users-o bigger-110 hidden-480">
                                                 </i>
                                                 Usuario
                                             </th>
-                                            <th>
+                                            <th width="10%">
                                                 Localidad
                                             </th>
-                                            <th>
+                                            <th width="10%">
                                                 Provincia
                                             </th>
-                                            <th>
+                                            <th width="10%">
                                                 Estado
                                             </th>
-                                            <th>
+                                            <th width="30%">
                                                 Acciones
                                             </th>
                                         </tr>
@@ -103,9 +103,6 @@
                                             </td>
                                             <td>
                                                 {{$anu->titulo}}
-                                            </td>
-                                            <td>
-                                                {{$anu->descripcion}}
                                             </td>
                                             <td>
                                                 {{$anu->fechainicio}}
@@ -195,6 +192,7 @@
                                 </table>
                                 {{$anuncios->links()}}
                             </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -204,7 +202,7 @@
 </div>
 <script type="text/javascript">
     $('#searchText').on('keyup',function(){
-        $value=$(this).val();      
+        $value=$(this).val();
         $.ajax({
             type : 'get',
             url  : '{{URL::to('/searchAnuncio')}}',
@@ -244,7 +242,7 @@ $(document).ready(function() {
     }
 
 
-        
+
         $(document).on('click', '.delete-modal', function(){
             $('.id').text($(this).data('id'));
             $('#modal-delete').modal('show');

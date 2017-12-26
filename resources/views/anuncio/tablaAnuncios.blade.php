@@ -1,5 +1,5 @@
         <div class="table-responsive">
-            <table class="table table-striped table-bordered table-condensed table-hover" ">
+            <table class="table table-bordered table-hover" id="simple-table">
                 <thead>
                     <th>Id Anuncio</th>
                     <th>Titulo</th>
@@ -19,14 +19,14 @@
                         <td>{{$anu->titulo}}</td>
                         <td>{{$anu->descripcion}}</td>
                         <td>{{$anu->fechainicio}}</td>
-                        <td>{{$anu->fechafinal}}</td>                     
-                        <td>{{$anu->activo}}</td>                     
-                        <td>{{$anu->NombreLocalidad}}</td>                     
+                        <td>{{$anu->fechafinal}}</td>
+                        <td>{{$anu->activo}}</td>
+                        <td>{{$anu->NombreLocalidad}}</td>
                         <td>
                             <a href="{{URL::action('UsuarioController@edit',$anu->idusuario)}}">
                                 {{$anu->NombreUsuario}}
                             </a>
-                        </td>                                             
+                        </td>
                         <td>
 
                             <a href="{{URL::action('AnuncioController@edit',$anu->idanuncio)}}">
@@ -34,9 +34,9 @@
                                 </i>
                             </a>
 
-                            <i class="fa fa-camera-retro fa-2x delete-modal " color=#00c0ef data-id="{{$anu->idanuncio}}"></i> 
-                            
-                        </td>                   
+                            <i class="fa fa-camera-retro fa-2x delete-modal " color=#00c0ef data-id="{{$anu->idanuncio}}"></i>
+
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

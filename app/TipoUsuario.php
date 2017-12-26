@@ -6,17 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class TipoUsuario extends Model
 {
-   protected $table='tipos_usuario';
+    protected $table = 'tipos_usuario';
 
-    protected $primaryKey='id';
+    protected $primaryKey = 'id';
 
-    public $timestamps=false;
+    public $timestamps = false;
 
-    protected $fillable =[
-    	'nombre',
+    protected $fillable = [
+        'nombre',
 
     ];
 
-    protected $guarded=[
+    protected $guarded = [
     ];
 }

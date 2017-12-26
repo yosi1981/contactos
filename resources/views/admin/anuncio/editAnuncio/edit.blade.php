@@ -1,4 +1,4 @@
-@extends ('layouts.admin1')
+@extends ('layouts.admin2')
 @section ('contenido')
 
 <h1>Modificar Anuncio</h1>
@@ -11,20 +11,20 @@
       {{ Form::text('titulo', $anuncio->titulo, array('placeholder' => 'Introduce el Titulo', 'class' => 'form-control')) }}
     </div>
   </div>
-<div class="row">    
+<div class="row">
     <div class="form-group col-md-4">
       {{ Form::label('descripcion', 'Descripcion') }}
-      {{ Form::text('descripcion', $anuncio->descripcion, array('placeholder' => 'Introduce la descripción', 'class' => 'form-control')) }}        
+      {{ Form::text('descripcion', $anuncio->descripcion, array('placeholder' => 'Introduce la descripción', 'class' => 'form-control')) }}
     </div>
   </div>
 
-<div class="row">    
+<div class="row">
     <div class="form-group col-md-4">
       {{ Form::label('fechainicio', 'Fecha Inicio') }}
       {{ Form::input('date','fechainicio' , $anuncio->fechainicio, ['class'=>'datepicker form-control']) }}
     </div>
   </div>
-<div class="row">    
+<div class="row">
     <div class="form-group col-md-4">
       {{ Form::label('fechafinal', 'Fecha Final') }}
      {{ Form::input('date','fechafinal' , $anuncio->fechafinal, ['class'=>'datepicker form-control']) }}
@@ -33,7 +33,7 @@
 
 
 
-<div class="row">    
+<div class="row">
     <div class="form-group col-md-4">
       {{ Form::label('activo', 'Activo?') }}
       @if($anuncio->activo==1)
@@ -44,23 +44,23 @@
     </div>
   </div>
 
-<div class="row">    
+<div class="row">
     <div class="form-group col-md-4">
       {{ Form::label('idlocalidad', 'Id localidad') }}
       {!! Form::select('idlocalidad',$localidades,null, $attributes = array('class'=>'form-control')) !!}
     </div>
 </div>
 
-<div class="row">    
+<div class="row">
     <div class="form-group col-md-4">
       {{ Form::label('idusuario', 'Id Usuario') }}
-      {!! Form::select('idusuario',$usuarios,null, $attributes = array('class'=>'form-control')) !!}    
+      {!! Form::select('idusuario',$usuarios,null, $attributes = array('class'=>'form-control')) !!}
     </div>
   </div>
 
   @include('admin.anuncio.includes.ImagenesUsuarioAnuncio')
 
-  {{ Form::button('Actualizar Anuncio', array('type' => 'submit', 'class' => 'btn btn-primary')) }}    
-  
+  {{ Form::button('Actualizar Anuncio', array('type' => 'submit', 'class' => 'btn btn-primary')) }}
+
 {{ Form::close() }}
 @endsection

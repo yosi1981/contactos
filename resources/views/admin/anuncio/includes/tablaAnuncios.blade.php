@@ -1,45 +1,40 @@
-<div align="center" class="widget-main no-padding">
-    <div>
-    </div>
     <table class="table table-bordered table-hover" id="simple-table">
         <thead>
             <tr>
-                <th>
-                    Id Anuncio
-                </th>
-                <th>
-                    Titulo
-                </th>
-                <th>
-                    descripcion
-                </th>
-                <th>
-                    <i class="ace-icon fa fa-clock-o bigger-110 hidden-480">
-                    </i>
-                    Fecha Inicio
-                </th>
-                <th>
-                    <i class="ace-icon fa fa-clock-o bigger-110 hidden-480">
-                    </i>
-                    Fecha Final
-                </th>
-                <th>
-                    <i class="ace-icon fa fa-users-o bigger-110 hidden-480">
-                    </i>
-                    Usuario
-                </th>
-                <th>
-                    Localidad
-                </th>
-                <th>
-                    Provincia
-                </th>
-                <th>
-                    Estado
-                </th>
-                <th>
-                    Acciones
-                </th>
+                                            <th width="5%">
+                                                Id
+                                            </th>
+                                            <th width="10%">
+                                                Titulo
+                                            </th>
+                                            <th width="10%">
+                                                <i class="ace-icon fa fa-clock-o bigger-110 hidden-480">
+                                                </i>
+                                                Fecha Inicio
+                                            </th>
+                                            <th width="10%">
+                                                <i class="ace-icon fa fa-clock-o bigger-110 hidden-480">
+                                                </i>
+                                                Fecha Final
+                                            </th>
+                                            <th width="10%">
+                                                <i class="ace-icon fa fa-users-o bigger-110 hidden-480">
+                                                </i>
+                                                Usuario
+                                            </th>
+                                            <th width="10%">
+                                                Localidad
+                                            </th>
+                                            <th width="10%">
+                                                Provincia
+                                            </th>
+                                            <th width="10%">
+                                                Estado
+                                            </th>
+                                            <th width="30%">
+                                                Acciones
+                                            </th>
+
             </tr>
         </thead>
         <tbody>
@@ -50,9 +45,6 @@
                 </td>
                 <td>
                     {{$anu->titulo}}
-                </td>
-                <td>
-                    {{$anu->descripcion}}
                 </td>
                 <td>
                     {{$anu->fechainicio}}
@@ -141,4 +133,3 @@
         </tbody>
     </table>
     {{$anuncios->links()}}
-</div>

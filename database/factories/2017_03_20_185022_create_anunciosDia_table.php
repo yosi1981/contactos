@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateAnunciosDiaTable extends Migration
 {
@@ -22,6 +22,7 @@ class CreateAnunciosDiaTable extends Migration
             $table->integer('idrespprov')->unsigned();
             $table->integer('idrespprovorigen')->unsigned();
             $table->double('numvisitas');
+            $table->integer('idpaquete')->unsigned();
 
         }); //
         Schema::table('anunciosDia', function (Blueprint $table) {
@@ -29,6 +30,7 @@ class CreateAnunciosDiaTable extends Migration
             $table->foreign('idlocalidad')->references('idlocalidad')->on('localidades');
             $table->foreign('idrespprov')->references('id')->on('usuarios');
             $table->foreign('idrespprovorigen')->references('id')->on('usuarios');
+            $table->foreign('idpaquete')->references('idpaquete')->on('paquetes');
         });
     }
 
@@ -39,6 +41,6 @@ class CreateAnunciosDiaTable extends Migration
      */
     public function down()
     {
-            Schema::drop('anuncios');
+        Schema::drop('anunciosDia');
     }
 }

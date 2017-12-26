@@ -1,11 +1,11 @@
 		<div class="table-responsive">
 			<table class="table table-striped table-bordered table-condensed table-hover" ">
 				<thead>
-					<th>Id Provincia</th>
-					<th>Nombre</th>
-					<th>Habilitado</th>
-					<th>Responsable</th>
-					<th>Opciones</th>
+							<th width="5%">Id </th>
+							<th width="35%">Nombre</th>
+							<th width="5%">Habilitado</th>
+							<th width="25%">Responsable</th>
+							<th width="30%">Opciones</th>
 				</thead>
 @if (count($provincias)>0)
 				<tbody>
@@ -21,12 +21,12 @@
 						</td>
 						<td>
 							<a href="{{URL::action('ProvinciaController@edit',$provi->idprovincia)}}"><button class="btn btn-info">Editar</button></a>
-							@if ($provi->habilitado==1) 
+							@if ($provi->habilitado==1)
 								<button class="delete-modal btn btn-warning" data-id="{{$provi->idprovincia}}">DESHABILITAR</button>
 							@else
 								<button class="delete-modal btn btn-success" data-id="{{$provi->idprovincia}}">HABILITAR</button>
 							@endif
-						</td>					
+						</td>
 					</tr>
 					@endforeach
 				</tbody>

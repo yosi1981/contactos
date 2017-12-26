@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Anuncio;
 use App\AnuncioDia;
+use App\Paquete;
 use App\Poblacion;
 use App\Provincia;
 use App\User;
@@ -95,20 +96,35 @@ class PrincipalController extends Controller
                 $newandia->update();
             } else {
                 if ($usuarioAnuncio->dias_disponibles > 0) {
-                    $newandia                         = new AnuncioDia();
-                    $an1                              = new Anuncio();
-                    $an1                              = Anuncio::findorfail($an->idanuncio);
-                    $newandia->idanuncio              = $an1->idanuncio;
-                    $newandia->idanunciante           = $an1->UserAnunciante->id;
-                    $newandia->fecha                  = $fechaactual;
-                    $newandia->idlocalidad            = $poblacion->idlocalidad;
-                    $newandia->idprovincia            = $provincia->idprovincia;
-                    $newandia->idadminPro             = $provincia->adminPro->id;
-                    $newandia->iddelegado             = $provincia->delegado->id;
-                    $newandia->idpartner              = $an1->UserAnunciante->Partner->id;
-                    $newandia->numvisitas             = 1;
-                    $usuarioAnuncio                   = Useranunciante::findorfail($an1->UserAnunciante->id);
+                    $newandia               = new AnuncioDia();
+                    $an1                    = new Anuncio();
+                    $an1                    = Anuncio::findorfail($an->idanuncio);
+                    $newandia->idanuncio    = $an1->idanuncio;
+                    $newandia->idanunciante = $an1->UserAnunciante->id;
+                    $newandia->fecha        = $fechaactual;
+                    $newandia->idlocalidad  = $poblacion->idlocalidad;
+                    $newandia->idprovincia  = $provincia->idprovincia;
+                    $newandia->idadminPro   = $provincia->adminPro->id;
+                    $newandia->iddelegado   = $provincia->delegado->id;
+                    $newandia->idpartner    = $an1->UserAnunciante->Partner->id;
+                    $newandia->numvisitas   = 1;
+                    //$usuarioAnuncio                   = Useranunciante::findorfail($an1->UserAnunciante->id);
                     $usuarioAnuncio->dias_disponibles = $usuarioAnuncio->dias_disponibles - 1;
+                    //localizamos el paquete del que descontar el dia
+                    //para realizar los pagos...
+                    $auxpaquete = Paquete::all()
+                        ->where('idanunciante', $usuarioAnuncio->id)
+                        ->where('estado', 'EN VIGOR')
+                        ->sortBy('fechaReg')
+                        ->first();
+
+                    $auxpaquete->drestantes = $auxpaquete->drestantes - 1;
+                    if ($auxpaquete->drestantes == 0) {
+                        $auxpaquete->estado = 'AGOTADO';
+                    }
+                    $newandia->idpaquete = $auxpaquete->idpaquete;
+                    $auxpaquete->save();
+
                     $usuarioAnuncio->save();
                     $an1->ult_muestra = $fechaactual;
                     $an1->save();

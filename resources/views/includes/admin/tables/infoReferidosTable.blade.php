@@ -123,7 +123,7 @@
                                                         {{$anuncioreferido->numvisitas}}
                                                     </td>
                                                 </tr>
-                                                @endforeach 
+                                                @endforeach
                                                         @else
                                                 <tr>
                                                     <td colspan="4">

@@ -1,58 +1,88 @@
-@extends ('layouts.admin1')
+@extends ('layouts.admin2')
 @section ('contenido')
 
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+        </div>
+        <div class="page-content">
+	@include('admin.provincia.nuevaProvincia.nuevaProvincia')
+	@include('admin.provincia.nuevaProvincia.modal')
+	<!--@include('admin.provincia.includes.search')-->
 
-<div class="row">
-	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+	<div class="row">
+	<div class="col-xs-12">
+		<div class="widget-box widget-color-blue ui-sortable-handle" id="widget-box-3">
+		    <div class="widget-header widget-header-small">
+		        <h5 class="widget-title">
+		            <i class="ace-icon fa fa-table">
+		            </i>
+		            Listado de Provincias
+		        </h5>
+		    </div>
+                       <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+                                <button id="btnAddProvincia" name="btnAddProvincia" class="btn btn-xs btn-white btn-default btn-round">
+                                    <i class="ace-icon fa fa-times red2">
+                                    </i>
+                                    Crear Provincia
+                                </button>
+                            <div class="nav-search" id="nav-search">
+{!! Form::open(array('url'=>'/admin/Provincia','method'=>'GET','autocomplete'=>'off','class'=>'navbar-form navbar-left','role'=>'search')) !!}
+                                <span class="input-icon">
+                                    <input autocomplete="off" class="nav-search-input" id="searchText" name="searchText" placeholder="Buscar..." value="{{$searchText}}">
+                                        <i class="ace-icon fa fa-search nav-search-icon">
+                                        </i>
+                                    </input>
+                                </span>
+                                {{Form::close()}}
+                            </div>
+                            <!-- /.nav-search -->
+                        </div>
+		    <div class="widget-body" style="display: block;">
+		        <div class="widget-main">
+				<div class="table-responsive" id="cuerpo" name="cuerpo">
+					<table class="table table-striped table-bordered table-condensed table-hover" >
+						<thead>
+							<th width="5%">Id </th>
+							<th width="35%">Nombre</th>
+							<th width="5%">Habilitado</th>
+							<th width="25%">Responsable</th>
+							<th width="30%">Opciones</th>
+						</thead>
+						<tbody>
+							@foreach ($provincias as $provi)
+							<tr>
+								<td>{{$provi->idprovincia}}</td>
+								<td>{{$provi->nombre}}</td>
+								<td>{{$provi->habilitado}}</td>
+								<td>
+									<a href="{{URL::to('/admin/EditarUsuario',$provi->idresponsable)}}">
+										{{$provi->NombreUsuario}}
+									</a>
+								</td>
+								<td>
+									<a href="{{URL::action('ProvinciaController@edit',$provi->idprovincia)}}"><button class="btn btn-info">Editar</button></a>
+									@if ($provi->habilitado==1)
+										<button class="delete-modal btn btn-warning" data-id="{{$provi->idprovincia}}">DESHABILITAR</button>
+									@else
+										<button class="delete-modal btn btn-success" data-id="{{$provi->idprovincia}}">HABILITAR</button>
+									@endif
+								</td>
+							</tr>
+							@endforeach
+						</tbody>
+					</table>
+					{{$provincias->links()}}
+				</div>
+		        </div>
+		    </div>
+		</div>
 
-		<h3>Listado de Provincias 
-			
-				<button id="btnAddProvincia" name="btnAddProvincia" class="btn btn-success">Nuevo</button>
-	
-		</h3>
-		@include('admin.provincia.includes.search')
-	</div>
-</div>
-@include('admin.provincia.nuevaProvincia.nuevaProvincia')
-<div class="row">
-@include('admin.provincia.nuevaProvincia.modal')
-	<div class="col-lg-12 ccol-md-12 col-sm-12 col-xs-12" >
-	
-		<div class="table-responsive" id="cuerpo" name="cuerpo">
-			<table class="table table-striped table-bordered table-condensed table-hover" >
-				<thead>
-					<th>Id Provincia</th>
-					<th>Nombre</th>
-					<th>Habilitado</th>
-					<th>Responsable</th>
-					<th>Opciones</th>
-				</thead>
-				<tbody>
-					@foreach ($provincias as $provi)
-					<tr>
-						<td>{{$provi->idprovincia}}</td>
-						<td>{{$provi->nombre}}</td>
-						<td>{{$provi->habilitado}}</td>
-						<td>
-							<a href="{{URL::to('/admin/EditarUsuario',$provi->idresponsable)}}">
-								{{$provi->NombreUsuario}}
-							</a>
-						</td>
-						<td>
-							<a href="{{URL::action('ProvinciaController@edit',$provi->idprovincia)}}"><button class="btn btn-info">Editar</button></a>
-							@if ($provi->habilitado==1) 
-								<button class="delete-modal btn btn-warning" data-id="{{$provi->idprovincia}}">DESHABILITAR</button>
-							@else
-								<button class="delete-modal btn btn-success" data-id="{{$provi->idprovincia}}">HABILITAR</button>
-							@endif
-						</td>					
-					</tr>
-					@endforeach
-				</tbody>
-			</table>
-			{{$provincias->links()}}
+
 		</div>
 	</div>
+</div>
+</div>
 </div>
 <script type="text/javascript">
 	$('#searchText').on('keyup',function(){
@@ -99,10 +129,12 @@
 			  delay: 4000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
 			  allow_dismiss: true, // If true then will display a cross to close the popup.
 			  stackup_spacing: 10 // spacing between consecutively stacked growls.
-			});		
+			});
 	}
 
-
+  		$('#btnAddProvincia').on('click',function(){
+	    	$('#Provincia').modal('show');
+	    })
 
     	$('#frmProvincia').on('submit',function(e){
     		e.preventDefault();

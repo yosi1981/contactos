@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Imagen;
+use App\Useranunciante;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -16,18 +17,20 @@ class ImagenController extends Controller
         switch (Auth::user()->stringRol->nombre) {
             case 'admin':
                 $imagenes = Imagen::all();
+                $usuarios = Useranunciante::all();
                 //->short('titulo', 'asc')
                 //->paginate(500);
+                return view(Auth::user()->stringRol->nombre . '/imagen.index', compact('imagenes', 'usuarios'));
                 break;
 
             case 'anunciante':
                 $imagenes = Imagen::where('idusuario', Auth::user()->id)
                     ->orderBy('titulo', 'asc')
                     ->paginate(500);
+                return view(Auth::user()->stringRol->nombre . '/imagen.index', compact('imagenes'));
                 break;
         }
 
-        return view(Auth::user()->stringRol->nombre . '/imagen.index', compact('imagenes'));
     }
 
     public function getImages()
@@ -49,6 +52,17 @@ class ImagenController extends Controller
 
         return view(Auth::user()->stringRol->nombre . '/imagen.includes.tablaImagenes', compact('imagenes'));
     }
+
+    public function getImagesUser(request $req)
+    {
+
+        $imagenes = Imagen::where('idusuario', $req->id)
+            ->orderBy('titulo', 'asc')
+            ->paginate(500);
+
+        return view(Auth::user()->stringRol->nombre . '/imagen.includes.tablaImagenes', compact('imagenes'));
+    }
+
     public function almacenar(request $request)
     {
         $files = Input::file('filesUpload');

@@ -17,7 +17,6 @@ class infocuentaController extends Controller
             return view($usuarioActual->stringRol->nombre . '.InfoCuenta.infocuenta', ["usuario" => $usuarioActual, "provincias" => $provincias]);
         } else {
             return view($usuarioActual->stringRol->nombre . '.InfoCuenta.infocuenta', ["usuario" => $usuarioActual]);
-
         }
     }
 }
