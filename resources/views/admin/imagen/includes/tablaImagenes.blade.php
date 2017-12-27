@@ -1,8 +1,8 @@
-                                       <ul class="ace-thumbnails clearfix">
+                                        <ul  class="ace-thumbnails clearfix">
                                             @foreach($imagenes as $imagen)
                                             <li>
                                                 <a class="cboxElement" data-rel="colorbox" href="" title="{{$imagen->titulo}}">
-                                                    <img alt="{{$imagen->idusuario}}" height="200" src="/imagenes/thumb_{{$imagen->ficheroimagen}}" width="150">
+                                                    <img class="desaturada" alt="{{$imagen->idusuario}}" height="200" src="/imagenes/thumb_{{$imagen->ficheroimagen}}" width="150">
                                                     </img>
                                                 </a>
                                                 <!--
@@ -45,8 +45,10 @@
                                                 </div>
                                             </li>
                                             @endforeach
-                                                                                            <a  href="" title="Añadir imagenes">
+                                            <div class="nimagen">
+                                                    <a data-iduserimagen="{{$usuario->id}}" href="" title="Añadir imagenes">
                                                     <img  height="200" src="/imagenes/thumb_descarga.jpeg" width="150">
                                                     </img>
                                                 </a>
+                                            </div>
                                         </ul>

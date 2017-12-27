@@ -12,16 +12,18 @@
                 </button>
             </div>
             <form action="/admin/uploadimage" enctype="multipart/form-data" id="frmUploadImage">
+                <input name="iduserimagen" id="iduserimagen" class="iduserimagen" type="text" value=""></input>
                 <div class="modal-body">
                     <div align="center" class="row">
                         <!--
 
-                        Falta programar el formulario de subir imagenes 
+                        Falta programar el formulario de subir imagenes
 
                         -->
                         <label>
                             Nuevo Archivo
                         </label>
+
                         <input name="_token" type="hidden" value="{{ csrf_token() }}">
                             <span class="btn btn-rose btn-round btn-file">
                                 <span class="fileinput-new">
@@ -32,6 +34,7 @@
                                         </div>
                                     </input>
                                 </input>
+
                             </span>
                         </input>
                     </div>

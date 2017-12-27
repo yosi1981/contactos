@@ -37,6 +37,7 @@
 
             </tr>
         </thead>
+        @if (count($anuncios)>0)
         <tbody>
             @foreach ($anuncios as $anu)
             <tr>
@@ -131,5 +132,15 @@
             </tr>
             @endforeach
         </tbody>
+
+@else
+                <tbody>
+                    <tr>
+                        <td colspan=9 align="center"><b>No hay resultados en la búsqueda</b></td>
+
+                    </tr>
+                </tbody>
+
+@endif
     </table>
     {{$anuncios->links()}}

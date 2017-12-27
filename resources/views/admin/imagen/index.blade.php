@@ -99,11 +99,11 @@
                                 </div>
                                 <div class="widget-body" style="display: block;">
                                     <div class="widget-main" id="det{{$usuario->id}}">
-                                        <ul class="ace-thumbnails clearfix">
+                                        <ul  class="ace-thumbnails clearfix">
                                             @foreach($usuario->Imagenes as $imagen)
                                             <li>
                                                 <a class="cboxElement" data-rel="colorbox" href="" title="{{$imagen->titulo}}">
-                                                    <img alt="{{$imagen->idusuario}}" height="200" src="/imagenes/thumb_{{$imagen->ficheroimagen}}" width="150">
+                                                    <img class="desaturada" alt="{{$imagen->idusuario}}" height="200" src="/imagenes/thumb_{{$imagen->ficheroimagen}}" width="150">
                                                     </img>
                                                 </a>
                                                 <!--
@@ -146,10 +146,12 @@
                                                 </div>
                                             </li>
                                             @endforeach
-                                                                                            <a  href="" title="Añadir imagenes">
+                                            <div class="nimagen">
+                                                    <a data-iduserimagen="{{$usuario->id}}" href="" title="Añadir imagenes">
                                                     <img  height="200" src="/imagenes/thumb_descarga.jpeg" width="150">
                                                     </img>
                                                 </a>
+                                            </div>
                                         </ul>
 
                                     </div>
@@ -185,6 +187,13 @@
             $('#btnUploadImagen').on('click',function(){
                 $('#Imagen').modal('show');
             })
+                       $(document).on('click', '.nimagen a', function(e){
+                            e.preventDefault();
+                            var id=$(this).data('iduserimagen');
+                            $('.iduserimagen').val(id);
+                            $('#Imagen').modal('show');
+                })
+
 
             var form=document.getElementById('frmUploadImage');
             var request=new XMLHttpRequest();
@@ -212,12 +221,14 @@
         }).done(function(data){
             var cuerpo= "det"+id;
             $('#'+cuerpo).html(data);
-            $('#imgusuario'+id).text($('#imgusuario'+id).text()-1);
+            var images=$("#det"+id+" li").size();
+            $('#imgusuario'+id).text(images);
         })
     }
             function transferComplete(data){
+                var id=$('.iduserimagen').val();
                 $('#Imagen').modal('hide');
-                getImagenes();
+                getImagenesUser(id);
             }
             $(document).ready(function() {
                 $('.modal').appendTo("body");
@@ -225,10 +236,12 @@
                 $('.modal-footer1').on('click', '.delete1', function(e) {
                     e.preventDefault();
                     var url="{{URL::to('/admin/eliminarimagen')}}";
+                    var id=$('.id').val();
+                    var iduser=$('.iduser').val();
                   $.ajax({
                     type: 'post',
                     data: {
-                      'id': $('.id').val()
+                      'id': id
                     },
                     url: url,
                     headers: {
@@ -236,7 +249,8 @@
                            },
                     success: function(data) {
                     $('#modal-delete-img-user').modal('hide');
-                    getImagenesUser($('.iduser').val());
+                    getImagenesUser(iduser);
+                    //$('#imgusuario'+id).text($('#imgusuario'+id).text()-1);
                     }
                   });
                 });
@@ -252,4 +266,13 @@
                 })
 
 </script>
+<style>
+img.desaturada { filter: grayscale(100%);
+-webkit-filter: grayscale(100%);
+-moz-filter: grayscale(100%);
+-ms-filter: grayscale(100%);
+-o-filter: grayscale(100%);
+}
+
+</style>
 @endsection

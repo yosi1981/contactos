@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Imagen;
+use App\User;
 use App\Useranunciante;
 use Auth;
 use Illuminate\Http\Request;
@@ -59,13 +60,15 @@ class ImagenController extends Controller
         $imagenes = Imagen::where('idusuario', $req->id)
             ->orderBy('titulo', 'asc')
             ->paginate(500);
-
-        return view(Auth::user()->stringRol->nombre . '/imagen.includes.tablaImagenes', compact('imagenes'));
+        $usuario = User::findorfail($req->id);
+        return view(Auth::user()->stringRol->nombre . '/imagen.includes.tablaImagenes', compact('imagenes', 'usuario'));
     }
 
     public function almacenar(request $request)
     {
+        $id    = $request->get('iduserimagen');
         $files = Input::file('filesUpload');
+
         if (!empty($files)) {
             foreach ($files as $file) {
                 $image = \Image::make($file);
@@ -78,7 +81,8 @@ class ImagenController extends Controller
                 $newImagen                = new Imagen;
                 $newImagen->ficheroimagen = $file->getclientOriginalName();
                 $newImagen->titulo        = $file->getClientOriginalName();
-                $newImagen->idusuario     = Auth::user()->id;
+                $newImagen->idusuario     = $id;
+                //$newImagen->idusuario     = Auth::user()->id;
                 $newImagen->save();
 
             }

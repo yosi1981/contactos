@@ -95,6 +95,7 @@
                                             </th>
                                         </tr>
                                     </thead>
+                                        @if (count($anuncios)>0)
                                     <tbody>
                                         @foreach ($anuncios as $anu)
                                         <tr>
@@ -128,7 +129,7 @@
                                                 </span>
                                                 @else
                                                 <span class="label label-sm label-success">
-                                                    Inactivo
+                                                    Activo
                                                 </span>
                                                 @endif
                                             </td>
@@ -141,7 +142,7 @@
                                                         </a>
                                                     </button>
                                                     <button class="btn btn-sm btn-danger">
-                                                        <i class="ace-icon delete-modal fa fa-trash bigger-120" color="white" data-id="{{$anu->idanuncio}}">
+                                                        <i class="ace-icon delete-modal fa fa-trash bigger-120" color=#00c0ef data-id="{{$anu->idanuncio}}">
                                                         </i>
                                                     </button>
                                                     <button class="btn btn-sm btn-warning">
@@ -189,6 +190,16 @@
                                         </tr>
                                         @endforeach
                                     </tbody>
+
+@else
+                <tbody>
+                    <tr>
+                        <td colspan=9 align="center"><b>No hay resultados en la búsqueda</b></td>
+
+                    </tr>
+                </tbody>
+
+@endif
                                 </table>
                                 {{$anuncios->links()}}
                             </div>
