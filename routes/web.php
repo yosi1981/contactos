@@ -55,6 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index');
 
     Route::group(['middleware' => 'Admin'], function () {
+        Route::get('/admin/paquete','PaqueteController@getPaquetes');
         Route::get('/admin/infocuenta', 'infocuentaController@InfoReferidos');
         Route::get('/admin/dashboard', 'AdminController@Dashboard');
         Route::resource('/admin/Provincia', 'ProvinciaController');

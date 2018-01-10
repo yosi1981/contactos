@@ -11,6 +11,8 @@ use App\UseradminProvincia;
 use App\Useranunciante;
 use App\Usercolaborador;
 use App\Userdelegado;
+use App\Paquete;
+
 use Auth;
 use DB;
 use Illuminate\Http\Request;
@@ -72,6 +74,7 @@ class UsuarioController extends Controller
                 $usuDatos->id        = $usuario->id;
                 $usuDatos->idpartner = $usuarioActual->id;
                 $usuDatos->save();
+
             }
             if ($usuario->tipo_usuario == 2) {
                 $usuDatos     = new UseradminProvincia;
@@ -98,6 +101,7 @@ class UsuarioController extends Controller
             }
 
             Mail::to($usuario['email'])->send(new verifyEmail($usuario));
+
         }
 
         return Redirect::to(Auth::user()->stringRol->nombre . '/Usuario');

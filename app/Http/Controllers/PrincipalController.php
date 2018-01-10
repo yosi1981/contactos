@@ -151,6 +151,18 @@ class PrincipalController extends Controller
             $usuario->status = 1;
             $usuario->token  = null;
             $usuario->update();
+                $newpaquete= new Paquete;
+                $newpaquete->tipo='GRATIS';
+                $newpaquete->idanunciante=$usuario->id;
+                $newpaquete->total=30;
+                $newpaquete->dcontratados=30;
+                $newpaquete->drestantes=30;
+                $fechaact=getdate();
+                $fechaactual = $fechaact['year'] . "/" . substr("0" . $fechaact['mon'], -2) . "/" . substr("0" . $fechaact['mday'], -2);
+                $newpaquete->fechaReg=$fechaactual;
+                $newpaquete->fechaUlt=$fechaactual;
+                $newpaquete->estado='EN VIGOR';
+                $newpaquete->save();            
             return $usuario->name . " Activado";
         } else {
             return $usuario->name . " No existe";

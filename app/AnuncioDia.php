@@ -24,6 +24,7 @@ class AnuncioDia extends Model
         'idlocalidad',
         'idanunciante',
     	'numvisitas',
+        'idpaquete',
     ];
 
     protected $guarded=[
