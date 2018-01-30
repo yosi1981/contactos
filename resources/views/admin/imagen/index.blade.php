@@ -215,7 +215,7 @@
             type : 'get',
             url  : url,
             data :{
-                'id':$('.iduser').val()
+                'id':$('.iduserimagen').val()
             },
             //data : {'searchText': search}
         }).done(function(data){
@@ -237,7 +237,7 @@
                     e.preventDefault();
                     var url="{{URL::to('/admin/eliminarimagen')}}";
                     var id=$('.id').val();
-                    var iduser=$('.iduser').val();
+                    var iduser=$('.iduserimagen').val();
                   $.ajax({
                     type: 'post',
                     data: {
@@ -260,7 +260,7 @@
                             var iduser=$(this).data('userid');
                             var titulo=$(this).data('titulo');
                             $('.id').val(id);
-                            $('.iduser').val(iduser);
+                            $('.iduserimagen').val(iduser);
                             $('#titledelete').text("Desea eliminar la imagen: ".concat(titulo));
                             $('#modal-delete-img-user').modal('show');
                 })

@@ -11,7 +11,7 @@
 					<form class="form-horizontal" role="form">
 						<p id="titledelete" >Confirme si desea Eliminar la Imagen :</p>
 						<span class="id"></span>
-						<span class="iduser"></span>
+						<span class="iduserimagen"></span>
 					</form>
 				</div>
 				<div class="modal-footer1">
