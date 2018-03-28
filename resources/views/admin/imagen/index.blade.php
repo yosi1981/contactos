@@ -8,20 +8,7 @@
         <div class="breadcrumbs ace-save-state" id="breadcrumbs">
         </div>
         <div class="page-content">
-            <div class="page-header">
-                <h1>
-                    Gallery
-                    <small>
-                        <i class="ace-icon fa fa-angle-double-right">
-                        </i>
-                        responsive photo gallery using colorbox
-                    </small>
-                    <button class="btn btn-success" data-placement="right" data-toggle="tooltip" id="btnUploadImagen" name="btnUploadImagen" title="Subir Imagen">
-                        Subir imagen
-                    </button>
-                </h1>
-            </div>
-            <!-- /.page-header -->
+            <div class="row">
             <div class="col-xs-12">
 <div class="widget-box widget-color-blue ui-sortable-handle" id="widget-box-3">
     <div class="widget-header widget-header-small">
@@ -175,7 +162,7 @@
             </div>
             <!-- /.col -->
         </div>
-        <!-- /.row -->
+        </div>
     </div>
     <!-- /.page-content -->
 </div>

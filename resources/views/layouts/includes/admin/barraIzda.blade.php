@@ -31,7 +31,7 @@ if ($seccion === "provincias") {
 
               <?php
 $seccion = \Session::get('seccion_actual');
-if ($seccion === "paquetes") {
+if ($seccion === "paquetes" or $seccion === "paquetescontratados" ) {
     echo "<li class='active open'>";
 } else {
     echo "<li>";
@@ -47,7 +47,7 @@ if ($seccion === "paquetes") {
                         <b class="arrow">
                         </b>
                         <ul class="submenu">
-                            <li class="active">
+                            <li class="">
                                 <a href="">
                                     <i class="menu-icon fa fa-caret-right">
                                     </i>
@@ -56,8 +56,15 @@ if ($seccion === "paquetes") {
                                 <b class="arrow">
                                 </b>
                             </li>
-                            <li class="">
-                                <a href="">
+                                <?php
+                                  $seccion=\Session::get('seccion_actual');
+                                  if ($seccion === "paquetescontratados") {
+                                      echo "<li class='active open'>";
+                                  } else {
+                                      echo "<li>";
+                                  }
+                                ?>
+                                <a href="{{asset('/admin/paquete')}}">
                                     <i class="menu-icon fa fa-caret-right">
                                     </i>
                                     Contratados

@@ -18,7 +18,7 @@ class ProvinciaController extends Controller
 
     public function index(Request $request)
     {
-        \Session::put('seccion_actual', "Provincia");
+        \Session::put('seccion_actual', "provincias");
         if ($request) {
             $query = trim($request->get('searchText'));
 /*            $provincias=DB::table('provincias')->where('nombre','LIKE','%'.$query.'%')
@@ -40,7 +40,7 @@ class ProvinciaController extends Controller
 
     public function search(Request $request)
     {
-                \Session::put('seccion_actual', "Provincia");
+                \Session::put('seccion_actual', "provincias");
         if ($request->ajax()) {
             $query      = trim($request->get('searchText'));
             $provincias = DB::table('provincias')
@@ -59,7 +59,7 @@ class ProvinciaController extends Controller
 
     public function create()
     {
-        \Session::put('seccion_actual', "Provincia");
+        \Session::put('seccion_actual', "provincias");
         return view("admin.provincia.create", ["usuarios" => $usuarios]);
     }
 
@@ -94,7 +94,7 @@ class ProvinciaController extends Controller
 
     public function show($id)
     {
-                \Session::put('seccion_actual', "Provincia");
+                \Session::put('seccion_actual', "provincias");
         return view("admin.provincia.show", ["provincia" => Provincia::findOrFail($id)]);
     }
     public function edit($id)

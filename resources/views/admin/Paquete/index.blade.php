@@ -69,18 +69,18 @@
                             </div>
                         </td>
                         <td>
-                            {{$paquete->Useranunciante->Usuario->email}}
+                            {{$paquete->UserAnunciante->Usuario->email}}
                         </td>
                         <td>
                             {{$paquete->estado}}
                         </td>
                         <td >
-                        	
+                            
 
-						<div class="progress  progress-striped active">
-													<div class="progress-bar progress-bar-success" style="width: {{count($paquete->Usos)*100/$paquete->dcontratados}}%;">{{count($paquete->Usos)}}/{{$paquete->dcontratados}}&nbsp;({{count($paquete->Usos)*100/$paquete->dcontratados}}%)</div>
-													<div class="progress-bar progress-bar-warning" style="width: {{($paquete->dcontratados - count($paquete->Usos))*100/$paquete->dcontratados}}%;"></div>
-						</div>
+                        <div class="progress  progress-striped active">
+                                                    <div class="progress-bar progress-bar-success" style="width: {{count($paquete->Usos)*100/$paquete->dcontratados}}%;">{{count($paquete->Usos)}}/{{$paquete->dcontratados}}&nbsp;({{count($paquete->Usos)*100/$paquete->dcontratados}}%)</div>
+                                                    <div class="progress-bar progress-bar-warning" style="width: {{($paquete->dcontratados - count($paquete->Usos))*100/$paquete->dcontratados}}%;"></div>
+                        </div>
 
                         </td>
                     </tr>

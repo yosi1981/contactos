@@ -149,5 +149,11 @@
                 </tbody>
             </table>
         </div>
+
     </div>
+   <div class="widget-header widget-header-small">
+        <h6 class="widget-title">
+            Información de tus ganancias
+        </h6>
+    </div>    
 </div>

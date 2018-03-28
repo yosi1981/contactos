@@ -4,7 +4,7 @@
         <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
         <meta charset="utf-8"/>
         <title>
-            Form Elements - Ace Admin
+            El aroma del placer
         </title>
         <meta content="Common form elements and layouts" name="description"/>
         <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport"/>
@@ -19,8 +19,8 @@
         <link href="{{asset('/css/daterangepicker.min.css')}}" rel="stylesheet"/>
         <link href="{{asset('/css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet"/>
         <link href="{{asset('/css/bootstrap-colorpicker.min.css')}}" rel="stylesheet"/>
-        <link href='{{ asset('css/fullcalendar.css')}}' rel='stylesheet' />
-        <link href='{{ asset('css/fullcalendar.print.min.css')}}' rel='stylesheet' media='print' />
+        <link href="{{ asset('css/fullcalendar.css')}}" rel='stylesheet' />
+        <link href="{{ asset('css/fullcalendar.print.min.css')}}" rel='stylesheet' media='print' />
     <!-- Necesario para el script del thumbnail-slider -->
         <link href="{{ asset('css/thumbnail-slider.css') }}" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="{{asset('css/image-picker.css')}}">
@@ -132,7 +132,7 @@
                         <small>
                             <i class="fa fa-leaf">
                             </i>
-                            Ace Admin
+                            El Aroma del Placer
                         </small>
                     </a>
                 </div>
@@ -439,7 +439,6 @@
                                     <small>
                                         Welcome,
                                     </small>
-                                    Jason
                                 </span>
                                 <i class="ace-icon fa fa-caret-down">
                                 </i>

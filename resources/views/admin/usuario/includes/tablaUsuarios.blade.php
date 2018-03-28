@@ -36,7 +36,7 @@
                                                         </a>
                                                     </button>
                                                     <button class="btn btn-sm btn-danger">
-                                                        <i class="ace-icon delete-modal fa fa-trash bigger-120" color=#00c0ef data-toggle="tooltip" data-placement="right" title="Eliminar Usuario" data-id="{{$usu->idanuncio}}">
+                                                        <i class="ace-icon delete-modal fa fa-trash bigger-120" color=#00c0ef data-toggle="tooltip" data-placement="right" title="Eliminar Usuario" data-id="{{$usu->id}}">
                                                         </i>
                                                     </button>
                                                     <button class="btn btn-sm btn-warning">

@@ -84,8 +84,10 @@ class AnuncioController extends Controller
         switch (Auth::user()->stringRol->nombre) {
             case 'admin':
                 $anuncio->idusuario = $request->get('idusuario');
+                break;
             case 'anunciante':
-                $anuncio->idusuario = Auth::user()->id;
+                $anuncio->idusuario =Auth::user()->id;;
+                break;
         }
 
         if ($anuncio->save()) {
